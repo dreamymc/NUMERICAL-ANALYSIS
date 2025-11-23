@@ -1,0 +1,15 @@
+Device	How it changes input / interpretation
+Smartphone	Battery reaches 50% quickly (~2–3 hours). So you’d pick t0 around 2 or 3.
+Smartwatch	Battery drains slower (~24–48 hours). Pick t0 around 5
+IoT sensor	Battery drains very slowly (~weeks). Pick t0 higher 10
+
+
+
+
+Examples of tolerance values
+Tolerance       Meaning     Accuracy Level
+1e-2             0.01	    2 decimal places
+1e-3	         0.001	    3 decimal places
+1e-4	         0.0001	      very accurate
+1e-5	         0.00001	 very very accurate
+1e-6	         0.000001	extremely accurate (overkill for labs)

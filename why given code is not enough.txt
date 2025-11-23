@@ -1,0 +1,22 @@
+1) What the code does (short explanation)
+
+--Implements Newton’s method for 
+--𝑓(𝑡)=𝑒^(−0.3𝑡) − 0.5 
+
+--Starts at a user-provided initial guess t.
+
+--Iterates until the change in t is smaller than tol and prints each new t.
+
+2) Problems / improvements to consider
+
+--No max iteration guard — if something goes wrong it could loop forever. Add max_iter.
+
+--Derivative can be (very) small — if f'(t) is zero (or near zero) division blows up or causes huge jumps. Check for small derivative and stop or perturb the guess.
+
+--Stopping criteria — you currently only test |t_new - t| < tol. It's good to also check |f(t_new)| < tol as an alternative criterion.
+
+--User feedback — print iteration number, f(t), f'(t), and the error so the demo is clearer.
+
+--Input validation — non-numeric input would crash the program.
+
+--Function return / modularity — wrap Newton’s method in a function so it’s easier to reuse/test.
