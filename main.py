@@ -1,4 +1,9 @@
 import math
+                                ## config for decimal places
+decimalPlaces = 5
+fmt_f = f".{decimalPlaces}f"   ## fixed decimal format
+fmt_e = f".{decimalPlaces}e"   ## scientific notation format
+
 
 def f(t):  ## the model
     return math.exp(-0.3 * t) - 0.5  ## battery-decay function (mao ni ang atong function f(t))
@@ -14,13 +19,13 @@ def newton_root(t0, tol, max_iter=200, f_tol=1e-8):
         f_val = f(t)
         fp_val = fp(t)
 
-    ##safety check if zero or gamay kaayo ang derivative
+        ## safety check if zero or gamay kaayo ang derivative
         if abs(fp_val) < 1e-12:
             raise ZeroDivisionError(
-                f"Derivative too small at iter {i}, t={t:.8f}. Try a different initial guess."
+                f"Derivative too small at iter {i}, t={t:{fmt_f}}. Try a different initial guess."
             )
 
-        ##  newton's formula ni siya --> t_new = t - f(t)/f'(t).
+        ## newton's formula ni siya --> t_new = t - f(t)/f'(t).
         t_new = t - f_val / fp_val
 
         ## Absolute relative error |er| (mao ni ang stopping criteria nato)
@@ -28,8 +33,8 @@ def newton_root(t0, tol, max_iter=200, f_tol=1e-8):
 
         ## Print sa values para makita nato ang iteration behavior
         print(
-            f"Iter {i:02d}: t = {t:.8f}, f(t) = {f_val:.4e}, f'(t) = {fp_val:.4e}, "
-            f"t_new = {t_new:.8f}, rel_error = {rel_error:.4e}"
+            f"Iter {i:02d}: t = {t:{fmt_f}}, f(t) = {f_val:{fmt_e}}, f'(t) = {fp_val:{fmt_e}}, "
+            f"t_new = {t_new:{fmt_f}}, rel_error = {rel_error:{fmt_e}}"
         )
 
         ## ----- STOPPING CRITERIA -----
@@ -47,7 +52,7 @@ def newton_root(t0, tol, max_iter=200, f_tol=1e-8):
 
     ## kung dili pa gyud mo-converge after max_iter, mo-error
     raise RuntimeError(
-        f"Didn't converge within {max_iter} iterations. Last t = {t:.8f}"
+        f"Didn't converge within {max_iter} iterations. Last t = {t:{fmt_f}}"
     )
 
 
@@ -68,12 +73,11 @@ if __name__ == "__main__":
 
     try:
         root, iters = newton_root(t0, tol, max_iter=200)  ## call sa Newton function
-        print(f"\nRoot found at t ≈ {root:.6f} after {iters} iterations")
+        print(f"\nRoot found at t ≈ {root:{fmt_f}} after {iters} iterations")
     except Exception as e:
         print("\nError:", e)
         raise SystemExit(1)
 
     # analytic solution para ma-compare ninyo
     analytic = math.log(2) / 0.3
-    print(f"Analytic solution: t = ln(2)/0.3 ≈ {analytic:.6f}")
-    print(f"Residual f(root) = {f(root):.4e}")
+    print(f"Analytic solution: t = ln(2)/0.3 ≈ {analytic:{fmt_f}}")

@@ -1,7 +1,7 @@
 Device	How it changes input / interpretation
 Smartphone	Battery reaches 50% quickly (~2–3 hours). So you’d pick t0 around 2 or 3.
 Smartwatch	Battery drains slower (~24–48 hours). Pick t0 around 5
-IoT sensor	Battery drains very slowly (~weeks). Pick t0 higher 10
+IoT sensor	Battery drains very slowly (~weeks). Pick t0 around 10
 
 
 
